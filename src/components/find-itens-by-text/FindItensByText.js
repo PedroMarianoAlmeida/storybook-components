@@ -10,7 +10,8 @@ const FindItensByText = (props) => {
     }
 
     useEffect( () => {
-        setDataFilterd(props.allData.filter( item => item.includes(inputValue) ));
+        if (props.caseSensitive) setDataFilterd(props.allData.filter( item => item.includes(inputValue) ));
+        else setDataFilterd(props.allData.filter( item => item.toLowerCase().includes(inputValue.toLowerCase()) ));
     }, [ inputValue ])
     
     const dataToDislpay = () => {
@@ -23,16 +24,14 @@ const FindItensByText = (props) => {
 
     return (
         <>
-        <input 
-            onChange={handleChange}
-            value={inputValue}
-            placeholder={props.placeholder}
-            {...props}
+            <input 
+                onChange={handleChange}
+                value={inputValue}
+                placeholder={props.placeholder}
+                {...props}
             />
-       
-            {dataToDislpay()}
         
-        
+            {dataToDislpay()}      
         </>
       );
 }
