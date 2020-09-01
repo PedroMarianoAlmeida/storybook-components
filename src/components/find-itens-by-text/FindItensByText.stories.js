@@ -21,9 +21,13 @@ export default {
 
 const Template = (args) => <FindItensByText {...args}/>
 
-export const ExactText = Template.bind({});
-ExactText.args = {
+export const Component = Template.bind({});
+Component.args = {
     caseSensitive: false,
     placeholder: 'Filter my skills',
     allData: mySkills,
+    inputClasses: 'form-control my-2 w-50 shadow-sm',
+    ulClasses: 'list-group-item border text-center',
+    liClasses: 'list-group-item border w-25 rounded',
+    noDataClasses:'text-danger mx-3',
 }

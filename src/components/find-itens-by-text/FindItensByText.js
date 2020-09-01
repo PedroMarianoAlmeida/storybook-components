@@ -16,16 +16,16 @@ const FindItensByText = (props) => {
     
     const dataToDislpay = () => {
         if (!inputValue) return ;
-        if (dataFiltered.length === 0) return <div>No data with this expression</div>
-        return  <ol>
-                    {dataFiltered.map(item => <li key={item}>{item}</li>)}
-                </ol>
+        if (dataFiltered.length === 0) return <div className={props.noDataClasses}>No data with this expression</div>
+        return  <ul className={props.olClasses}>
+                    {dataFiltered.map(item => <li className={props.liClasses} key={item}>{item}</li>)}
+                </ul>
     }
 
     return (
         <>
             <input 
-                className='bg-danger'
+                className={props.inputClasses}
                 onChange={handleChange}
                 value={inputValue}
                 placeholder={props.placeholder}
