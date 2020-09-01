@@ -25,6 +25,7 @@ const FindItensByText = (props) => {
     return (
         <>
             <input 
+                className='bg-danger'
                 onChange={handleChange}
                 value={inputValue}
                 placeholder={props.placeholder}

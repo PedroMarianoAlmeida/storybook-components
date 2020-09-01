@@ -2,7 +2,7 @@ import React from 'react';
 
 import FindItensByText from './FindItensByText';
 
-const canadianCompanies = [
+const mySkills = [
         'React',
         'Next.js',
         'JavaScript',
@@ -25,5 +25,5 @@ export const ExactText = Template.bind({});
 ExactText.args = {
     caseSensitive: false,
     placeholder: 'Filter my skills',
-    allData: canadianCompanies,
+    allData: mySkills,
 }
