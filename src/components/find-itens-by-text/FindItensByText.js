@@ -12,7 +12,7 @@ const FindItensByText = (props) => {
     useEffect( () => {
         if (props.caseSensitive) setDataFilterd(props.allData.filter( item => item.includes(inputValue) ));
         else setDataFilterd(props.allData.filter( item => item.toLowerCase().includes(inputValue.toLowerCase()) ));
-    }, [ inputValue ])
+    }, [ inputValue, props ])
     
     const dataToDislpay = () => {
         if (!inputValue) return ;
