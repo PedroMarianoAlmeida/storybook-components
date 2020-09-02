@@ -22,16 +22,22 @@ const FindItensByText = (props) => {
         else setDataFilterd(props.allData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase())));
     }, [inputValue, props])
 
+    const handleClick = (e) => props.onClickFunction(e);
+
     const dataToDislpay = () => {
         if (!inputValue) return;
         if (dataFiltered.length === 0) return <div className={props.noDataClasses}>No data with this expression</div>
         return <div className={props.grouperItensClasses}>
-            {dataFiltered.map(item => <div>
-                                        <button className={props.individualItemClasses} key={item}>
-                                            {item}
-                                        </button>
-                                    </div>
-                                )}
+            {dataFiltered.map(item => <div key={item}>
+                <button
+                    className={props.individualItemClasses}
+                    value={item}
+                    onClick={handleClick}
+                >
+                    {item}
+                </button>
+            </div>
+            )}
         </div>
     }
 
@@ -67,17 +73,22 @@ FindItensByText.propTypes = {
     allData: PropTypes.array,
 
     /**
+    * Function to execute when an individual element is clicked
+    */
+    onClickFunction: PropTypes.func,
+
+    /**
     * CSS classes to input element
     */
     inputClasses: PropTypes.string,
 
     /**
-    * CSS classes to ul element
+    * CSS classes to Grouper element
     */
     grouperItensClasses: PropTypes.string,
 
     /**
-    * CSS classes to li element
+    * CSS classes to Individual element
     */
     individualItemClasses: PropTypes.string,
 
@@ -85,6 +96,7 @@ FindItensByText.propTypes = {
     * CSS classes to div when there is no data with the input element text
     */
     noDataClasses: PropTypes.string,
+
 }
 
 FindItensByText.defaultProps = {
@@ -95,6 +107,7 @@ FindItensByText.defaultProps = {
     grouperItensClasses: '',
     liClasses: '',
     noDataClasses: '',
+    onClickFunction: (e) => console.log(e.target.value, 'clicked')
 }
 
 export default FindItensByText;
