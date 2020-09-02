@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+/**
+ * This is a component where the user inserts an expression that he/she wants to find among many others, 
+ * then the website starts to filter only the options that match with the user input text. <br />
+ * 
+ * You can see an example of implementation <a href='https://myfridgemeal.com' target='_blank'>here</a> 
+ * and download this component to use on your project <a href='https://github.com/PedroMarianoAlmeida/storybook-components/blob/master/src/components/find-itens-by-text/FindItensByText.js' target='_blank'>here</a>.
+ */
 const FindItensByText = (props) => {
     
     const [ dataFiltered, setDataFilterd ] = useState([]);
