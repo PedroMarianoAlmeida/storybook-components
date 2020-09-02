@@ -27,7 +27,7 @@ Component.args = {
     placeholder: 'Filter my skills',
     allData: mySkills,
     inputClasses: 'form-control my-2 w-50 shadow-sm',
-    ulClasses: 'list-group-item border text-center',
-    liClasses: 'list-group-item border w-25 rounded',
+    grouperItensClasses: 'list-group text-center',
+    individualItemClasses: 'list-group-item list-group-item-action w-25 rounded my-1',
     noDataClasses:'text-danger mx-3',
 }

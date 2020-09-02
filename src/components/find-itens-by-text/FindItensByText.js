@@ -25,9 +25,14 @@ const FindItensByText = (props) => {
     const dataToDislpay = () => {
         if (!inputValue) return;
         if (dataFiltered.length === 0) return <div className={props.noDataClasses}>No data with this expression</div>
-        return <ul className={props.olClasses}>
-            {dataFiltered.map(item => <li className={props.liClasses} key={item}>{item}</li>)}
-        </ul>
+        return <div className={props.grouperItensClasses}>
+            {dataFiltered.map(item => <div>
+                                        <button className={props.individualItemClasses} key={item}>
+                                            {item}
+                                        </button>
+                                    </div>
+                                )}
+        </div>
     }
 
     return (
@@ -69,12 +74,12 @@ FindItensByText.propTypes = {
     /**
     * CSS classes to ul element
     */
-    ulClasses: PropTypes.string,
+    grouperItensClasses: PropTypes.string,
 
     /**
     * CSS classes to li element
     */
-    liClasses: PropTypes.string,
+    individualItemClasses: PropTypes.string,
 
     /**
     * CSS classes to div when there is no data with the input element text
@@ -87,7 +92,7 @@ FindItensByText.defaultProps = {
     placeholder: '',
     allData: [],
     inputClasses: '',
-    ulClasses: '',
+    grouperItensClasses: '',
     liClasses: '',
     noDataClasses: '',
 }
