@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  * You can see an example of implementation <a href='https://myfridgemeal.com' target='_blank'>here</a> 
  * and check the code of this component to use on your project <a href='https://github.com/PedroMarianoAlmeida/storybook-components/blob/master/src/components/find-itens-by-text/FindItensByText.js' target='_blank'>here</a>.
  */
-const FindItensByText = (props) => {
+const FindItensByText = ({caseSensitive, allData, noDataClasses, grouperItensClasses, individualItemClasses, inputClasses, placeholder, onClickFunction, ...props}) => {
 
     const [dataFiltered, setDataFilterd] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -18,19 +18,19 @@ const FindItensByText = (props) => {
     }
 
     useEffect(() => {
-        if (props.caseSensitive) setDataFilterd(props.allData.filter(item => item.includes(inputValue)));
-        else setDataFilterd(props.allData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase())));
-    }, [inputValue, props])
+        if (caseSensitive) setDataFilterd(allData.filter(item => item.includes(inputValue)));
+        else setDataFilterd(allData.filter(item => item.toLowerCase().includes(inputValue.toLowerCase())));
+    }, [inputValue, caseSensitive, allData])
 
-    const handleClick = (e) => props.onClickFunction(e);
+    const handleClick = (e) => onClickFunction(e);
 
     const dataToDislpay = () => {
         if (!inputValue) return;
-        if (dataFiltered.length === 0) return <div className={props.noDataClasses}>No data with this expression</div>
-        return <div className={props.grouperItensClasses}>
+        if (dataFiltered.length === 0) return <div className={noDataClasses}>No data with this expression</div>
+        return <div className={grouperItensClasses}>
             {dataFiltered.map(item => <div key={item}>
                 <button
-                    className={props.individualItemClasses}
+                    className={individualItemClasses}
                     value={item}
                     onClick={handleClick}
                 >
@@ -44,10 +44,10 @@ const FindItensByText = (props) => {
     return (
         <>
             <input
-                className={props.inputClasses}
+                className={inputClasses}
                 onChange={handleChange}
                 value={inputValue}
-                placeholder={props.placeholder}
+                placeholder={placeholder}
                 {...props}
             />
 
@@ -105,7 +105,7 @@ FindItensByText.defaultProps = {
     allData: [],
     inputClasses: '',
     grouperItensClasses: '',
-    liClasses: '',
+    individualItemClasses: '',
     noDataClasses: '',
     onClickFunction: (e) => console.log(e.target.value, 'clicked')
 }
