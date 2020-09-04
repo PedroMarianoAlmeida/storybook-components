@@ -28,7 +28,8 @@ const Map = () => {
                     onCloseClick={() => {setSelectedMarker(null)}}
                 >
                     <div>
-                        teste
+                        <h6>{selectedMarker.title}</h6>
+                        <p>{selectedMarker.description}</p>
                     </div>
                 </InfoWindow>
             )}
