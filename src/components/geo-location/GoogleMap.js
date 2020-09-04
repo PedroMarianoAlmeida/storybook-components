@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { compose, withProps } from "recompose";
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
-//From where this come from (documentation included): https://www.npmjs.com/package/react-google-maps
+//From where this come from: https://www.npmjs.com/package/react-google-maps
 //Tutorial to implement: https://www.youtube.com/watch?v=Pf7g32CwX_s&t=812s
 import { GoogleMap , withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
@@ -356,32 +354,28 @@ const mapStyles = {
     ],
 }
 
-const GoogleMapComponent = compose(
-    withProps({
-      googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`,
-      loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `400px` }} />,
-      mapElement: <div style={{ height: `100%` }} />,
-    }),
-    withScriptjs,
-    withGoogleMap
-  )((props) =>{
+const Map = () => {
     const [ selectedMarker, setSelectedMarker ] = useState(null);
-    return(
+
+    return (
         <GoogleMap 
             defaultZoom={10}
             defaultCenter={{ lat: 49.3023, lng:  -123.107 }}
-            defaultOptions={{styles: mapStyles.default}}
+            defaultOptions={{styles: mapStyles.lostInDesert}}
         >
-                        {toMarker.map(point => (
+            {toMarker.map(point => (
                 <Marker 
                     key={point.title} 
                     position={{lat: point.lat, lng: point.lng}}
-                    onClick={ () => setSelectedMarker(point) }    
+                    onClick={ () => setSelectedMarker(point) }
+                    icon={{
+                        url: '/favicon.ico',
+                        scaledSize: new window.google.maps.Size(25, 25)
+                    }}  
                 />
             ))}
 
-{selectedMarker && (
+            {selectedMarker && (
                 <InfoWindow
                     position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
                     onCloseClick={() => {setSelectedMarker(null)}}
@@ -393,12 +387,22 @@ const GoogleMapComponent = compose(
                 </InfoWindow>
             )}
         </GoogleMap>
-    )}
-  )
+    );
+}
 
+const WrappedMap = withScriptjs(withGoogleMap(Map));
 
-GoogleMapComponent.propTypes = {
-    //styleMap: PropTypes.oneOf(['default', 'modest'])
+const GoogleMapComponent = () => {
+    return (
+        <div style={{ height: `500px`, width:'1000px' }}>
+            <WrappedMap
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `400px` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+            />
+        </div>
+    );
 }
 
 export default GoogleMapComponent;

@@ -8,6 +8,3 @@ export default {
 
 const Template = (args) => <GoogleMapComponent {...args}/>
 export const Component = Template.bind({});
-Component.args = {
-    styleMap: 'default'
-}
