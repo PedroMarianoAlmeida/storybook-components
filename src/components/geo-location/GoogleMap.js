@@ -18,7 +18,11 @@ const Map = () => {
                 <Marker 
                     key={point.title} 
                     position={{lat: point.lat, lng: point.lng}}
-                    onClick={ () => setSelectedMarker(point) }  
+                    onClick={ () => setSelectedMarker(point) }
+                    icon={{
+                        url: '/favicon.ico',
+                        scaledSize: new window.google.maps.Size(25, 25)
+                    }}  
                 />
             ))}
 
