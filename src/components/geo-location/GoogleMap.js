@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //From where this come from: https://www.npmjs.com/package/react-google-maps
 //Tutorial to implement: https://www.youtube.com/watch?v=Pf7g32CwX_s&t=812s
-import { GoogleMap , withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
+import { GoogleMap , withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 const toMarker = [
     { lat: 49.3023, lng: -123.107, title:'Vancouver', description:'Major city in western Canada' },
@@ -10,14 +10,28 @@ const toMarker = [
 ]
 
 const Map = () => {
+    const [ selectedMarker, setSelectedMarker ] = useState(null);
+
     return (
         <GoogleMap defaultZoom={10} defaultCenter={{ lat: 49.3023, lng:  -123.107 }}>
             {toMarker.map(point => (
                 <Marker 
                     key={point.title} 
-                    position={{lat: point.lat, lng: point.lng}}  
+                    position={{lat: point.lat, lng: point.lng}}
+                    onClick={ () => setSelectedMarker(point) }  
                 />
             ))}
+
+            {selectedMarker && (
+                <InfoWindow
+                    position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
+                    onCloseClick={() => {setSelectedMarker(null)}}
+                >
+                    <div>
+                        teste
+                    </div>
+                </InfoWindow>
+            )}
         </GoogleMap>
     );
 }
