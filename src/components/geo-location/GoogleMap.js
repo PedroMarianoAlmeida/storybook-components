@@ -563,8 +563,8 @@ const Map = (props) => {
 
     return (
         <GoogleMap
-            defaultZoom={ props.defaultZoom }
-            defaultCenter={{lat: props.defaultLat, lng: props.defaultLng}}
+            defaultZoom={props.defaultZoom}
+            defaultCenter={{ lat: props.defaultLat, lng: props.defaultLng }}
             defaultOptions={{ styles: mapStyles[currentMapStyle] }}
             key={`${currentMapStyle}-${props.defaultZoom}-${props.defaultLat}-${props.defaultLng}`} //This property forces the re-render when some inicial configuration of maps ocours
         >
@@ -614,11 +614,23 @@ const GoogleMapComponent = (props) => {
     return (
         <div style={{ height: `500px`, width: '1000px' }}>
             <WrappedMap
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                //Remove or comment this line... this key works only in Developer's adress (https://affectionate-stonebraker-6ad0ad.netlify.app/?path=/story/example-introduction--page)
+                googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDJEckJqPRZdT97zOCIdNcFpKnyefsYvqw'
+
+                /*
+                Steps to make this component works fine:
+                1: Create a Google Cloud API Key
+                Create a .env.local on your machine and insert your Google Cloud API Key, instructions in: 
+                
+
+                
+                */
+               //googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
-                
+
                 defaultZoom={props.defaultZoom}
                 defaultLat={props.defaultLat}
                 defaultLng={props.defaultLng}
