@@ -3,213 +3,213 @@ import PropTypes from 'prop-types';
 
 //From where this come from: https://www.npmjs.com/package/react-google-maps
 //Tutorial to implement: https://www.youtube.com/watch?v=Pf7g32CwX_s&t=812s
-import { GoogleMap , withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 //Source to styles: https://snazzymaps.com/
 //When a pass this object to another file, the PropTypes.oneOf( Object.keys(mapStyles) ) stop working
 const mapStyles = {
     default: '',
-    
+
     lostInDesert: [
-    {
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            },
-            {
-                "color": "#f49f53"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "stylers": [
-            {
-                "color": "#f9ddc5"
-            },
-            {
-                "lightness": -7
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "stylers": [
-            {
-                "color": "#813033"
-            },
-            {
-                "lightness": 43
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business",
-        "stylers": [
-            {
-                "color": "#645c20"
-            },
-            {
-                "lightness": 38
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "stylers": [
-            {
-                "color": "#1994bf"
-            },
-            {
-                "saturation": -69
-            },
-            {
-                "gamma": 0.99
-            },
-            {
-                "lightness": 43
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#f19f53"
-            },
-            {
-                "weight": 1.3
-            },
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 16
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business"
-    },
-    {
-        "featureType": "poi.park",
-        "stylers": [
-            {
-                "color": "#645c20"
-            },
-            {
-                "lightness": 39
-            }
-        ]
-    },
-    {
-        "featureType": "poi.school",
-        "stylers": [
-            {
-                "color": "#a95521"
-            },
-            {
-                "lightness": 35
-            }
-        ]
-    },
-    {},
-    {
-        "featureType": "poi.medical",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#813033"
-            },
-            {
-                "lightness": 38
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {
-        "elementType": "labels"
-    },
-    {
-        "featureType": "poi.sports_complex",
-        "stylers": [
-            {
-                "color": "#9e5916"
-            },
-            {
-                "lightness": 32
-            }
-        ]
-    },
-    {},
-    {
-        "featureType": "poi.government",
-        "stylers": [
-            {
-                "color": "#9e5916"
-            },
-            {
-                "lightness": 46
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "stylers": [
-            {
-                "color": "#813033"
-            },
-            {
-                "lightness": 22
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "stylers": [
-            {
-                "lightness": 38
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#f19f53"
-            },
-            {
-                "lightness": -10
-            }
-        ]
-    },
-    {},
-    {},
-    {}
+        {
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                },
+                {
+                    "color": "#f49f53"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "stylers": [
+                {
+                    "color": "#f9ddc5"
+                },
+                {
+                    "lightness": -7
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "stylers": [
+                {
+                    "color": "#813033"
+                },
+                {
+                    "lightness": 43
+                }
+            ]
+        },
+        {
+            "featureType": "poi.business",
+            "stylers": [
+                {
+                    "color": "#645c20"
+                },
+                {
+                    "lightness": 38
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "stylers": [
+                {
+                    "color": "#1994bf"
+                },
+                {
+                    "saturation": -69
+                },
+                {
+                    "gamma": 0.99
+                },
+                {
+                    "lightness": 43
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#f19f53"
+                },
+                {
+                    "weight": 1.3
+                },
+                {
+                    "visibility": "on"
+                },
+                {
+                    "lightness": 16
+                }
+            ]
+        },
+        {
+            "featureType": "poi.business"
+        },
+        {
+            "featureType": "poi.park",
+            "stylers": [
+                {
+                    "color": "#645c20"
+                },
+                {
+                    "lightness": 39
+                }
+            ]
+        },
+        {
+            "featureType": "poi.school",
+            "stylers": [
+                {
+                    "color": "#a95521"
+                },
+                {
+                    "lightness": 35
+                }
+            ]
+        },
+        {},
+        {
+            "featureType": "poi.medical",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#813033"
+                },
+                {
+                    "lightness": 38
+                },
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+            "elementType": "labels"
+        },
+        {
+            "featureType": "poi.sports_complex",
+            "stylers": [
+                {
+                    "color": "#9e5916"
+                },
+                {
+                    "lightness": 32
+                }
+            ]
+        },
+        {},
+        {
+            "featureType": "poi.government",
+            "stylers": [
+                {
+                    "color": "#9e5916"
+                },
+                {
+                    "lightness": 46
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.line",
+            "stylers": [
+                {
+                    "color": "#813033"
+                },
+                {
+                    "lightness": 22
+                }
+            ]
+        },
+        {
+            "featureType": "transit",
+            "stylers": [
+                {
+                    "lightness": 38
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#f19f53"
+                },
+                {
+                    "lightness": -10
+                }
+            ]
+        },
+        {},
+        {},
+        {}
     ],
 
     modest: [
@@ -543,37 +543,59 @@ const mapStyles = {
     ]
 }
 
+//Source to icons: https://fontawesome.com/
+const iconPaths = {
+    default: '/fontawsome/map-marker-alt-solid.svg',
+    person: '/fontawsome/walking-solid.svg',
+    maple: '/fontawsome/canadian-maple-leaf-brands.svg',
+    dog: '/fontawsome/dog-solid.svg',
+    bus: '/fontawsome/bus-solid.svg',
+    factory: '/fontawsome/industry-solid.svg',
+}
+
 const Map = (props) => {
-    const [ selectedMarker, setSelectedMarker ] = useState(null);
+    const [selectedMarker, setSelectedMarker] = useState(null);
     const [currentMapStyle, setCurrentMapStyle] = useState(props.mapStyle);
 
-    useEffect (() => {
+    useEffect(() => {
         setCurrentMapStyle(props.mapStyle);
     }, [props.mapStyle])
 
     return (
-        <GoogleMap 
-            defaultZoom={5}
-            defaultCenter={{ lat: 49.3023, lng:  -123.107 }}
-            defaultOptions={{styles: mapStyles[currentMapStyle]}}
-            key={currentMapStyle} //This property forces the re-render when the mapStyle changes
+        <GoogleMap
+            defaultZoom={ props.defaultZoom }
+            defaultCenter={{lat: props.defaultLat, lng: props.defaultLng}}
+            defaultOptions={{ styles: mapStyles[currentMapStyle] }}
+            key={`${currentMapStyle}-${props.defaultZoom}-${props.defaultLat}-${props.defaultLng}`} //This property forces the re-render when some inicial configuration of maps ocours
         >
-            {props.markers.map(point => (
-                <Marker 
-                    key={point.title} 
-                    position={{lat: point.lat, lng: point.lng}}
-                    onClick={ () => setSelectedMarker(point) }
+            {props.markers1.map(point => (
+                <Marker
+                    key={point.title}
+                    position={{ lat: point.lat, lng: point.lng }}
+                    onClick={() => setSelectedMarker(point)}
                     icon={{
-                        url: '/favicon.ico',
-                        scaledSize: new window.google.maps.Size(25, 25)
-                    }}  
+                        url: iconPaths[props.iconMarker1],
+                        scaledSize: new window.google.maps.Size(props.sizeIconMarker1, props.sizeIconMarker1)
+                    }}
+                />
+            ))}
+
+            {props.markers2.map(point => (
+                <Marker
+                    key={point.title}
+                    position={{ lat: point.lat, lng: point.lng }}
+                    onClick={() => setSelectedMarker(point)}
+                    icon={{
+                        url: iconPaths[props.iconMarker2],
+                        scaledSize: new window.google.maps.Size(props.sizeIconMarker2, props.sizeIconMarker2)
+                    }}
                 />
             ))}
 
             {selectedMarker && (
                 <InfoWindow
-                    position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
-                    onCloseClick={() => {setSelectedMarker(null)}}
+                    position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+                    onCloseClick={() => { setSelectedMarker(null) }}
                 >
                     <div>
                         <h6>{selectedMarker.title}</h6>
@@ -587,25 +609,43 @@ const Map = (props) => {
 
 const WrappedMap = withScriptjs(withGoogleMap(Map))
 
-const GoogleMapComponent = (props) => {    
-    
+const GoogleMapComponent = (props) => {
+
     return (
-        <div style={{ height: `500px`, width:'1000px' }}>
+        <div style={{ height: `500px`, width: '1000px' }}>
             <WrappedMap
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
+                
+                defaultZoom={props.defaultZoom}
+                defaultLat={props.defaultLat}
+                defaultLng={props.defaultLng}
                 mapStyle={props.mapStyle}
-                markers={props.markers}
+
+                markers1={props.markers1}
+                iconMarker1={props.iconMarker1}
+                sizeIconMarker1={props.sizeIconMarker1}
+
+                markers2={props.markers2}
+                iconMarker2={props.iconMarker2}
+                sizeIconMarker2={props.sizeIconMarker2}
             />
         </div>
-        
+
     );
 }
 
 GoogleMapComponent.propTypes = {
-    mapStyle: PropTypes.oneOf( Object.keys(mapStyles) ),
+    defaultZoom: PropTypes.number,
+    defaultLat: PropTypes.number,
+    defaultLng: PropTypes.number,
+    mapStyle: PropTypes.oneOf(Object.keys(mapStyles)),
+    iconMarker1: PropTypes.oneOf(Object.keys(iconPaths)),
+    sizeIconMarker1: PropTypes.number,
+    iconMarker2: PropTypes.oneOf(Object.keys(iconPaths)),
+    sizeIconMarker2: PropTypes.number,
 }
 
 export default GoogleMapComponent;

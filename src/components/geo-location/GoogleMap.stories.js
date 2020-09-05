@@ -1,10 +1,16 @@
 import React from 'react';
 import GoogleMapComponent from './GoogleMap';
 
-const toMarker = [
-    { lat: 49.3023, lng: -123.107, title:'Vancouver', description:'Major city in western Canada' },
-    { lat: 51, lng: -120, title:'Vancouver2', description:'Major city in western Canada' },
-    {lat: 43.651070, lng: -79.347015, title:'Toronto', description:'Capital city of the Canadian province of Ontario'},
+const toMarker1 = [
+    { lat: 45, lng: -120, title:'Vancouver1', description:'Major city in western Canada' },
+    {lat: 46, lng: -120, title:'Toronto2', description:'Capital city of the Canadian province of Ontario'},
+    {lat: 47, lng: -120, title:'Toronto3', description:'Capital city of the Canadian province of Ontario'},
+]
+
+const toMarker2 = [
+    { lat: 48, lng: -120, title:'Vancouver4', description:'Major city in western Canada' },
+    {lat: 49, lng: -120, title:'Toronto5', description:'Capital city of the Canadian province of Ontario'},
+    {lat: 50, lng: -120, title:'Toronto6', description:'Capital city of the Canadian province of Ontario'},
 ]
 
 export default {
@@ -16,5 +22,15 @@ const Template = (args) => <GoogleMapComponent {...args}/>
 export const Component = Template.bind({});
 Component.args = {
     mapStyle: 'grayScale',
-    markers: toMarker,
+    defaultZoom: 5,
+    defaultLat: 48,
+    defaultLng: -120,
+
+    markers1: toMarker1,
+    iconMarker1: 'default',
+    sizeIconMarker1: 25,
+
+    markers2: toMarker2,
+    iconMarker2: 'person',
+    sizeIconMarker2: 25,
 }
