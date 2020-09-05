@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 //From where this come from: https://www.npmjs.com/package/react-google-maps
 //Tutorial to implement: https://www.youtube.com/watch?v=Pf7g32CwX_s&t=812s
@@ -6,6 +7,7 @@ import { GoogleMap , withScriptjs, withGoogleMap, Marker, InfoWindow } from 'rea
 
 const toMarker = [
     { lat: 49.3023, lng: -123.107, title:'Vancouver', description:'Major city in western Canada' },
+    { lat: 51, lng: -120, title:'Vancouver2', description:'Major city in western Canada' },
     {lat: 43.651070, lng: -79.347015, title:'Toronto', description:'Capital city of the Canadian province of Ontario'},
 ]
 
@@ -352,16 +354,214 @@ const mapStyles = {
             ]
         }
     ],
+
+    grayScale: [
+        {
+            "featureType": "all",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "color": "#444444"
+                },
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative.neighborhood",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "on"
+                },
+                {
+                    "color": "#e0dfe0"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#a8a9a8"
+                },
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "saturation": -100
+                },
+                {
+                    "lightness": 45
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "visibility": "on"
+                },
+                {
+                    "color": "#5b5b5a"
+                }
+            ]
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "simplified"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "color": "#ffffff"
+                },
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "labels",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        }
+    ]
 }
 
-const Map = () => {
+const Map = (props) => {
     const [ selectedMarker, setSelectedMarker ] = useState(null);
+    const [currentMapStyle, setCurrentMapStyle] = useState(props.mapStyle);
+
+    useEffect (() => {
+        setCurrentMapStyle(props.mapStyle);
+    }, [props.mapStyle])
 
     return (
         <GoogleMap 
-            defaultZoom={10}
+            defaultZoom={5}
             defaultCenter={{ lat: 49.3023, lng:  -123.107 }}
-            defaultOptions={{styles: mapStyles.lostInDesert}}
+            defaultOptions={{styles: mapStyles[currentMapStyle]}}
+            key={currentMapStyle} //This property forces the re-render when the mapStyle changes
         >
             {toMarker.map(point => (
                 <Marker 
@@ -390,9 +590,12 @@ const Map = () => {
     );
 }
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+const WrappedMap = withScriptjs(withGoogleMap(Map))
 
-const GoogleMapComponent = () => {
+
+
+const GoogleMapComponent = (props) => {    
+    
     return (
         <div style={{ height: `500px`, width:'1000px' }}>
             <WrappedMap
@@ -400,9 +603,15 @@ const GoogleMapComponent = () => {
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
+                mapStyle={props.mapStyle}
             />
         </div>
+        
     );
+}
+
+GoogleMapComponent.propTypes = {
+    mapStyle: PropTypes.oneOf( Object.keys(mapStyles) ),
 }
 
 export default GoogleMapComponent;
