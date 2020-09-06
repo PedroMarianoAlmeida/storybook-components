@@ -597,12 +597,12 @@ const Map = (props) => {
                     position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
                     onCloseClick={() => { setSelectedMarker(null) }}
                 >
-                    <div style={{width: '200px'}} className='text-center'>
+                    <div style={{ width: '200px' }} className='text-center'>
                         <h6>{selectedMarker.title}</h6>
-                        <img 
+                        <img
                             src={selectedMarker.srcImage}
-                            alt={selectedMarker.alt} 
-                            style={{width: '150px'}}
+                            alt={selectedMarker.alt}
+                            style={{ width: '150px' }}
                         />
                         <p>{selectedMarker.description}</p>
                     </div>
@@ -614,14 +614,23 @@ const Map = (props) => {
 
 const WrappedMap = withScriptjs(withGoogleMap(Map))
 
+/**
+ * This is a Google Maps component where the user can click in some markers and see its title, photo and description <br />
+ * Via code, the developer can change the map style, the places on the map pinned, and the size, formats and informations of the icons markers <br />
+ * <br />
+ * You can check the code of this component to use on your project <a href='https://github.com/PedroMarianoAlmeida/storybook-components/blob/master/src/components/geo-location/GoogleMap.js' target='_blank'>here</a>. <br />
+ *<br />
+ * <strong>Note 1:</strong> If you just copy and paste it wont works, because you need a Google Cloud API Key (and my key is configured to works only in my storybook website), so search by googleMapURL variable and follow the instructions there <br />
+ *<strong>Note 2:</strong> Is necessary install the react-google-maps dependency
+ */
 const GoogleMapComponent = (props) => {
 
     return (
         <div style={{ height: `500px`, width: '1000px' }}>
-            
+
             <WrappedMap
                 //Remove or commment the line bellow... this key works only in Developer's adress (https://affectionate-stonebraker-6ad0ad.netlify.app/?path=/story/example-introduction--page)
-                //googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDJEckJqPRZdT97zOCIdNcFpKnyefsYvqw'
+                googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDJEckJqPRZdT97zOCIdNcFpKnyefsYvqw'
 
                 /*
                 Steps to make this component works on your project:
@@ -631,9 +640,11 @@ const GoogleMapComponent = (props) => {
                 Note 2: This video isn't mine =D
 
                 2: Create a .env.local on your machine and insert the code: REACT_APP_GOOGLE_KEY= '<YOUR_API_KEY_VALUE>'               
-                */
-               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                 
+                3: Uncomment the line bellow (googleMapUrl)
+                */
+                //googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
@@ -657,13 +668,52 @@ const GoogleMapComponent = (props) => {
 }
 
 GoogleMapComponent.propTypes = {
+    /**
+    * Defines the inicial zoom on the map
+    */
     defaultZoom: PropTypes.number,
+
+    /**
+    * Defines the inicial Latitude on the map
+    */
     defaultLat: PropTypes.number,
+
+    /**
+    * Defines the inicial Longitude on the map
+    */
     defaultLng: PropTypes.number,
+
+    /**
+    * Defines the style of the map
+    */
     mapStyle: PropTypes.oneOf(Object.keys(mapStyles)),
+    
+    /**
+    * Defines the places of Marker 1
+    */
+    markers1: PropTypes.array,
+    /**
+    * Defines the image of marker 1
+    */
     iconMarker1: PropTypes.oneOf(Object.keys(iconPaths)),
+    /**
+    * Defines the size of marker 1
+    */
     sizeIconMarker1: PropTypes.number,
+
+    /**
+    * Defines the places of Marker 2
+    */
+   markers2: PropTypes.array,
+
+    /**
+    * Defines the image of marker 2
+    */
     iconMarker2: PropTypes.oneOf(Object.keys(iconPaths)),
+
+    /**
+    * Defines the size of marker 2
+    */
     sizeIconMarker2: PropTypes.number,
 }
 
