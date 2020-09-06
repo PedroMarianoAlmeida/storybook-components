@@ -597,8 +597,13 @@ const Map = (props) => {
                     position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
                     onCloseClick={() => { setSelectedMarker(null) }}
                 >
-                    <div>
+                    <div style={{width: '200px'}} className='text-center'>
                         <h6>{selectedMarker.title}</h6>
+                        <img 
+                            src={selectedMarker.srcImage}
+                            alt={selectedMarker.alt} 
+                            style={{width: '150px'}}
+                        />
                         <p>{selectedMarker.description}</p>
                     </div>
                 </InfoWindow>
@@ -613,19 +618,21 @@ const GoogleMapComponent = (props) => {
 
     return (
         <div style={{ height: `500px`, width: '1000px' }}>
+            
             <WrappedMap
-                //Remove or comment this line... this key works only in Developer's adress (https://affectionate-stonebraker-6ad0ad.netlify.app/?path=/story/example-introduction--page)
-                googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDJEckJqPRZdT97zOCIdNcFpKnyefsYvqw'
+                //Remove or commment the line bellow... this key works only in Developer's adress (https://affectionate-stonebraker-6ad0ad.netlify.app/?path=/story/example-introduction--page)
+                //googleMapURL='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDJEckJqPRZdT97zOCIdNcFpKnyefsYvqw'
 
                 /*
-                Steps to make this component works fine:
-                1: Create a Google Cloud API Key
-                Create a .env.local on your machine and insert your Google Cloud API Key, instructions in: 
-                
+                Steps to make this component works on your project:
+                1: Create a Google Cloud API Key 
+                Reference tutorial: https://www.youtube.com/watch?v=5hTlSGD4_zk
+                Note 1: In 4:22, search by "Maps JavaScript API", and not the Translator, same thing in 5:41
+                Note 2: This video isn't mine =D
 
-                
+                2: Create a .env.local on your machine and insert the code: REACT_APP_GOOGLE_KEY= '<YOUR_API_KEY_VALUE>'               
                 */
-               //googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                 
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
