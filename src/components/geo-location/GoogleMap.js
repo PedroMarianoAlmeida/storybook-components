@@ -621,7 +621,7 @@ const WrappedMap = withScriptjs(withGoogleMap(Map))
  * You can check the code of this component to use on your project <a href='https://github.com/PedroMarianoAlmeida/storybook-components/blob/master/src/components/geo-location/GoogleMap.js' target='_blank'>here</a>. <br />
  *<br />
  * <strong>Note 1:</strong> If you just copy and paste it wont works, because you need a Google Cloud API Key (and my key is configured to works only in my storybook website), so search by googleMapURL variable and follow the instructions there <br />
- *<strong>Note 2:</strong> Is necessary install the react-google-maps dependency
+ *<strong>Note 2:</strong> It is necessary to install the react-google-maps dependency
  */
 const GoogleMapComponent = (props) => {
 
