@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const ExactText = ({question, answer, caseSensitive, numberOfTips, ...props}) => {
+const ExactText = ({question, answer, caseSensitive, numberOfTips, explanation, ...props}) => {
     const [inputValue, setInputValue] = useState('');
     
     const handleChange = (e) => {
@@ -16,17 +16,18 @@ const ExactText = ({question, answer, caseSensitive, numberOfTips, ...props}) =>
     
     return ( 
         <form onSubmit={handleSubmit}>
-            <label>{question}</label>
+            <label className='d-block my-3'>{question}</label>
 
             <input 
+                className='mr-2'
                 placeholder="type your answer"
                 value={inputValue}
                 onChange={handleChange}
             /> 
             
-            <button>Use Tip</button>
+            <button className='btn btn-primary'>Use Tip</button>
 
-            <input type='submit' />
+            <input className='d-block my-3 btn btn-primary' type='submit' />
         </form>
      );
 }
