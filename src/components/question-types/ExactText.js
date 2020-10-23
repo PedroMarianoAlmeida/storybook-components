@@ -27,7 +27,7 @@ const ExactText = ({question, answer, caseSensitive, numberOfTips, explanation, 
             
             <button className='btn btn-primary'>Use Tip</button>
 
-            <input className='d-block my-3 btn btn-primary' type='submit' />
+            <input className='d-block my-3 btn btn-primary' type='submit' disabled={!inputValue} />
         </form>
      );
 }
@@ -42,6 +42,11 @@ ExactText.propTypes = {
    * The correct answer
    */
     answer: PropTypes.string,
+
+    /**
+   * An explanation of why this is the correct answer (it is exhibit only after the student chooses the right option)
+   */
+  explanation: PropTypes.string,
 
    /**
    * Determine if the answer is case sensitive
