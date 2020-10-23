@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ExactText = ({question, answer, caseSensitive, numberOfTips, explanation, ...props}) => {
-    const [inputValue, setInputValue] = useState('');
+    const [ inputValue, setInputValue ] = useState('');
+    const [ answerCorrect, setAnswerCorrect ] = useState(null);
     
     const handleChange = (e) => {
         setInputValue(e.target.value);
@@ -10,25 +11,32 @@ const ExactText = ({question, answer, caseSensitive, numberOfTips, explanation, 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(inputValue === answer) console.log("Correct")
-        else console.log("Try again")
+        setAnswerCorrect(inputValue === answer);
+        console.log(answerCorrect);
     }
     
     return ( 
-        <form onSubmit={handleSubmit}>
-            <label className='d-block my-3'>{question}</label>
+        <>
+            <form onSubmit={handleSubmit}>
+                <label className='d-block my-3'>{question}</label>
 
-            <input 
-                className='mr-2'
-                placeholder="type your answer"
-                value={inputValue}
-                onChange={handleChange}
-            /> 
-            
-            <button className='btn btn-primary'>Use Tip</button>
+                <input 
+                    className='mr-2'
+                    placeholder="type your answer"
+                    value={inputValue}
+                    onChange={handleChange}
+                /> 
+                
+                <button className='btn btn-primary'>Use Tip</button>
 
-            <input className='d-block my-3 btn btn-primary' type='submit' disabled={!inputValue} />
-        </form>
+                <input className='d-block my-3 btn btn-primary' type='submit' disabled={!inputValue} />
+            </form>
+
+            <div className={`${answerCorrect === null ? 'd-none' : 'border w-25'}`}>           
+                <div>This answer is {answerCorrect ? 'correct' : 'incorrect'}.</div>
+                <div>{answerCorrect ? explanation : `The correct answer is ${answer}`}   </div>
+            </div>
+       </>
      );
 }
 
